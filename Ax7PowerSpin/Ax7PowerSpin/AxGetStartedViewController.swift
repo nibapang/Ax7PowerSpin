@@ -100,8 +100,8 @@ class AxGetStartedViewController: UIViewController {
     
     private func setupInitialState() {
         // Initial states for animations
-        lblTitle.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-        lblTitle.alpha = 0
+//        lblTitle.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+//        lblTitle.alpha = 0
         
         imgBg.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
         imgBg.alpha = 0
@@ -159,8 +159,8 @@ class AxGetStartedViewController: UIViewController {
     private func animateLogo() {
         // Initial pop-in animation
         UIView.animate(withDuration: 1.2, delay: 0.3, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: .curveEaseOut) {
-            self.lblTitle.transform = .identity
-            self.lblTitle.alpha = 1
+//            self.lblTitle.transform = .identity
+//            self.lblTitle.alpha = 1
         } completion: { _ in
             self.startLogoFloatingAnimation()
             self.startLogoRotationAnimation()
@@ -178,7 +178,7 @@ class AxGetStartedViewController: UIViewController {
         floatAnimation.repeatCount = .infinity
         floatAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
         
-        self.lblTitle.layer.add(floatAnimation, forKey: "floatingAnimation")
+//        self.lblTitle.layer.add(floatAnimation, forKey: "floatingAnimation")
     }
     
     private func startLogoRotationAnimation() {
@@ -191,7 +191,7 @@ class AxGetStartedViewController: UIViewController {
         rotationAnimation.repeatCount = .infinity
         rotationAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
         
-        self.lblTitle.layer.add(rotationAnimation, forKey: "rotationAnimation")
+//        self.lblTitle.layer.add(rotationAnimation, forKey: "rotationAnimation")
     }
     
     private func startLogoGlowEffect() {
@@ -214,7 +214,7 @@ class AxGetStartedViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         // Remove animations when view disappears
-        lblTitle.layer.removeAllAnimations()
+//        lblTitle.layer.removeAllAnimations()
         imgBg.layer.removeAllAnimations()
     }
     
