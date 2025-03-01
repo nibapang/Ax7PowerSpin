@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_12" orientation="landscape" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="tDk-fI-CHB">
+                                <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="YN6-F5-hzz">
+                                <rect key="frame" x="326" y="46.666666666666657" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="jBi-hu-uor"/>
+                                    <constraint firstAttribute="width" constant="200" id="ths-a8-giu"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="F 1" translatesAutoresizingMaskIntoConstraints="NO" id="7O7-FE-TUr">
+                                <rect key="frame" x="276" y="252" width="300" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="PU9-ur-qJR"/>
+                                    <constraint firstAttribute="height" constant="100" id="toZ-xp-1aT"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Ax7 Power Spin" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Itd-b2-Mf1">
+                                <rect key="frame" x="299.66666666666669" y="278" width="252.66666666666669" height="48"/>
+                                <fontDescription key="fontDescription" name="MuktaMahee-Bold" family="Mukta Mahee" pointSize="27"/>
+                                <color key="textColor" name="lbl1"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" name="shd"/>
+                                <size key="shadowOffset" width="3" height="3"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="tDk-fI-CHB" secondAttribute="trailing" id="G5Y-J5-wug"/>
+                            <constraint firstItem="YN6-F5-hzz" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-50" id="JK3-5K-h7o"/>
+                            <constraint firstItem="7O7-FE-TUr" firstAttribute="centerX" secondItem="Itd-b2-Mf1" secondAttribute="centerX" id="Na3-RF-oyf"/>
+                            <constraint firstAttribute="bottom" secondItem="tDk-fI-CHB" secondAttribute="bottom" id="Rmz-RO-Cev"/>
+                            <constraint firstItem="tDk-fI-CHB" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="cYV-AI-8Te"/>
+                            <constraint firstItem="tDk-fI-CHB" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="fHw-gj-b5w"/>
+                            <constraint firstItem="7O7-FE-TUr" firstAttribute="centerY" secondItem="Itd-b2-Mf1" secondAttribute="centerY" id="oay-Ex-as6"/>
+                            <constraint firstItem="YN6-F5-hzz" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="wuL-co-s0b"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7O7-FE-TUr" secondAttribute="bottom" constant="20" id="xcP-oh-Sg3"/>
+                            <constraint firstItem="7O7-FE-TUr" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="yOj-aa-2Ny"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-132" y="360"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="F 1" width="1072" height="420"/>
+        <image name="bg" width="1792" height="1024"/>
+        <image name="logo" width="1024" height="1024"/>
+        <namedColor name="lbl1">
+            <color red="0.7369999885559082" green="0.81999999284744263" blue="0.26600000262260437" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="shd">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
