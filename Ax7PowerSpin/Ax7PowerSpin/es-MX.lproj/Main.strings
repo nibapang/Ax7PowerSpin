@@ -1,0 +1,66 @@
+
+/* Class = "UILabel"; text = "ABOUT"; ObjectID = "6ju-iS-D9A"; */
+"6ju-iS-D9A.text" = "ABOUT";
+
+/* Class = "UIButton"; normalTitle = "X"; ObjectID = "88c-qg-0kz"; */
+"88c-qg-0kz.normalTitle" = "X";
+
+/* Class = "UITextView"; text = "Ax7 Power Spin\n\nPAx7 Power Spin is a unique and engaging slot machine game that blends traditional slot gameplay with interactive 3D elements. Set in a visually stunning casino environment, the game offers an immersive experience where players can spin slot reels, earn rewards, and explore an interactive world with added gameplay challenges.\n\nBeyond just spinning reels, PAx7 Power Spin introduces a 3D play mode where players can take control of a tractor to clear grass, adding a fun and dynamic twist to the traditional slot experience.\n\nHow to Play\n\t1.\tChoose Your Mode – Select between classic slot gameplay and an interactive 3D experience.\n\t2.\tSpin the Slot Machine – Tap the spin button to match symbols and earn points. Higher matches lead to bigger rewards.\n\t3.\t3D Play Mode – Control a tractor to clear grass in an open-world environment, completing tasks to progress.\n\t4.\tScore and Progress – Advance through different levels by achieving higher scores and completing challenges.\n\t5.\tExplore the Casino Environment – Navigate through the beautifully designed game world, interact with various elements, and discover new challenges.\n\nKey Features\n\t•\tRealistic Casino Setting – The game is set in a highly detailed, immersive casino environment with modern visual effects.\n\t•\tInteractive Gameplay – Beyond just spinning, engage in a 3D world where you can interact with the environment.\n\t•\tSmooth Controls – Navigate seamlessly with responsive controls and intuitive mechanics.\n\t•\tEngaging Slot Machine – Experience high-quality slot animations with exciting rewards and challenges.\n\t•\tCustomizable Settings – Adjust volume, controls, and gameplay preferences for a personalized experience.\n\t•\tDynamic Sound Effects – Authentic casino sounds, slot machine effects, and interactive background audio enhance the experience.\n\nWhy Play PAx7 Power Spin?\n\t•\tCombines Slot Gaming with 3D Exploration – Unlike traditional slot games, PAx7 Power Spin introduces interactive elements, making gameplay more engaging.\n\t•\tVisually Stunning Graphics – The game world is designed with attention to detail, featuring a vibrant and modern casino setting.\n\t•\tEnhances Focus and Strategy – Players need to make quick decisions while spinning reels or clearing challenges in 3D mode.\n\t•\tRelaxing Yet Engaging Gameplay – Whether spinning slots or completing 3D tasks, the game provides a balance of excitement and relaxation.\n\t•\tProgressive Rewards and Levels – Unlock new challenges and earn rewards as you improve your performance.\n"; ObjectID = "8B1-eG-UHW"; */
+"8B1-eG-UHW.text" = "Ax7 Power Spin\n\nPAx7 Power Spin is a unique and engaging slot machine game that blends traditional slot gameplay with interactive 3D elements. Set in a visually stunning casino environment, the game offers an immersive experience where players can spin slot reels, earn rewards, and explore an interactive world with added gameplay challenges.\n\nBeyond just spinning reels, PAx7 Power Spin introduces a 3D play mode where players can take control of a tractor to clear grass, adding a fun and dynamic twist to the traditional slot experience.\n\nHow to Play\n\t1.\tChoose Your Mode – Select between classic slot gameplay and an interactive 3D experience.\n\t2.\tSpin the Slot Machine – Tap the spin button to match symbols and earn points. Higher matches lead to bigger rewards.\n\t3.\t3D Play Mode – Control a tractor to clear grass in an open-world environment, completing tasks to progress.\n\t4.\tScore and Progress – Advance through different levels by achieving higher scores and completing challenges.\n\t5.\tExplore the Casino Environment – Navigate through the beautifully designed game world, interact with various elements, and discover new challenges.\n\nKey Features\n\t•\tRealistic Casino Setting – The game is set in a highly detailed, immersive casino environment with modern visual effects.\n\t•\tInteractive Gameplay – Beyond just spinning, engage in a 3D world where you can interact with the environment.\n\t•\tSmooth Controls – Navigate seamlessly with responsive controls and intuitive mechanics.\n\t•\tEngaging Slot Machine – Experience high-quality slot animations with exciting rewards and challenges.\n\t•\tCustomizable Settings – Adjust volume, controls, and gameplay preferences for a personalized experience.\n\t•\tDynamic Sound Effects – Authentic casino sounds, slot machine effects, and interactive background audio enhance the experience.\n\nWhy Play PAx7 Power Spin?\n\t•\tCombines Slot Gaming with 3D Exploration – Unlike traditional slot games, PAx7 Power Spin introduces interactive elements, making gameplay more engaging.\n\t•\tVisually Stunning Graphics – The game world is designed with attention to detail, featuring a vibrant and modern casino setting.\n\t•\tEnhances Focus and Strategy – Players need to make quick decisions while spinning reels or clearing challenges in 3D mode.\n\t•\tRelaxing Yet Engaging Gameplay – Whether spinning slots or completing 3D tasks, the game provides a balance of excitement and relaxation.\n\t•\tProgressive Rewards and Levels – Unlock new challenges and earn rewards as you improve your performance.\n";
+
+/* Class = "UIButton"; normalTitle = "ABOUT US"; ObjectID = "961-6k-qUE"; */
+"961-6k-qUE.normalTitle" = "ABOUT US";
+
+/* Class = "UIButton"; configuration.title = "Button"; ObjectID = "9Yx-Fr-eka"; */
+"9Yx-Fr-eka.configuration.title" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "9Yx-Fr-eka"; */
+"9Yx-Fr-eka.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "RATE US"; ObjectID = "B9n-lv-yTw"; */
+"B9n-lv-yTw.normalTitle" = "RATE US";
+
+/* Class = "UIButton"; normalTitle = "X"; ObjectID = "CgT-7p-rcx"; */
+"CgT-7p-rcx.normalTitle" = "X";
+
+/* Class = "UILabel"; text = "POWER SLOT"; ObjectID = "HBJ-gU-3vN"; */
+"HBJ-gU-3vN.text" = "POWER SLOT";
+
+/* Class = "UILabel"; text = "Slot Wave"; ObjectID = "IEG-nk-ZA4"; */
+"IEG-nk-ZA4.text" = "Slot Wave";
+
+/* Class = "UILabel"; text = "POWER\nSLOT"; ObjectID = "K04-qr-kwe"; */
+"K04-qr-kwe.text" = "POWER\nSLOT";
+
+/* Class = "UILabel"; text = "000"; ObjectID = "LCU-RZ-jv3"; */
+"LCU-RZ-jv3.text" = "000";
+
+/* Class = "UILabel"; text = "Ax7 Power Spin"; ObjectID = "OZq-2C-lL9"; */
+"OZq-2C-lL9.text" = "Ax7 Power Spin";
+
+/* Class = "UIButton"; normalTitle = "X"; ObjectID = "UYU-qG-YNE"; */
+"UYU-qG-YNE.normalTitle" = "X";
+
+/* Class = "UIButton"; normalTitle = "SPIN"; ObjectID = "YgI-un-Eqg"; */
+"YgI-un-Eqg.normalTitle" = "SPIN";
+
+/* Class = "UILabel"; text = "000"; ObjectID = "bbk-68-fX2"; */
+"bbk-68-fX2.text" = "000";
+
+/* Class = "UILabel"; text = "Start Ax7 Power Spin"; ObjectID = "ipv-SS-GT1"; */
+"ipv-SS-GT1.text" = "Start Ax7 Power Spin";
+
+/* Class = "UIButton"; normalTitle = "X"; ObjectID = "oaL-Ln-eov"; */
+"oaL-Ln-eov.normalTitle" = "X";
+
+/* Class = "UILabel"; text = "000"; ObjectID = "pnr-1F-w0I"; */
+"pnr-1F-w0I.text" = "000";
+
+/* Class = "UIButton"; normalTitle = "X"; ObjectID = "rlf-lJ-AWz"; */
+"rlf-lJ-AWz.normalTitle" = "X";
+
+/* Class = "UIButton"; normalTitle = "Privacy Policy"; ObjectID = "tJH-AD-2U4"; */
+"tJH-AD-2U4.normalTitle" = "Privacy Policy";
+
+/* Class = "UIButton"; normalTitle = "3D PLAY"; ObjectID = "v3V-70-1lp"; */
+"v3V-70-1lp.normalTitle" = "3D PLAY";

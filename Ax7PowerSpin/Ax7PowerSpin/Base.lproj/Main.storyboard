@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="PS2-91-sDG">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="PS2-91-sDG">
                                 <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="F 1" translatesAutoresizingMaskIntoConstraints="NO" id="evo-JX-MCj">
@@ -82,6 +82,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Kko-gk-yfs"/>
                     <connections>
+                        <outlet property="StartBtn" destination="oSg-vg-mRu" id="25F-Pk-fEW"/>
                         <outlet property="imgBg" destination="PS2-91-sDG" id="cXQ-vq-yQm"/>
                         <outlet property="imgC" destination="7Aq-qD-pko" id="igw-IS-dyt"/>
                         <outlet property="lblTitle" destination="ipv-SS-GT1" id="CUz-lz-pR4"/>
@@ -458,6 +459,13 @@ Why Play PAx7 Power Spin?
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kLa-4E-mWd"/>
+                    <connections>
+                        <outlet property="axPrivacyBackView" destination="CgT-7p-rcx" id="WxM-Do-HZi"/>
+                        <outlet property="axWebView" destination="G7h-1S-iRh" id="Xxx-pO-7Q3"/>
+                        <outlet property="bottomCos" destination="O4z-4o-on3" id="x1S-05-BQF"/>
+                        <outlet property="indicatorView" destination="Isd-xT-PQj" id="AoQ-jR-kGG"/>
+                        <outlet property="topCos" destination="AIU-oa-4wm" id="sU1-l2-MnL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s0j-CA-cia" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -731,6 +739,9 @@ SLOT</string>
                                                 <state key="normal" title="Privacy Policy" backgroundImage="F 4">
                                                     <color key="titleColor" name="bg"/>
                                                 </state>
+                                                <connections>
+                                                    <segue destination="6oG-vX-e9M" kind="push" id="pbe-wo-g6n"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>

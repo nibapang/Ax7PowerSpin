@@ -6,5 +6,7 @@ target 'Ax7PowerSpin' do
   use_frameworks!
 
   # Pods for Ax7PowerSpin
-
+  pod 'Firebase/Messaging'
+  pod 'AppsFlyerFramework'
+  pod 'FBSDKCoreKit', '17.4.0'
 end
