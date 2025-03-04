@@ -28,47 +28,58 @@ class AxGetStartedViewController: UIViewController {
     }
     
     private func axNeedsShowAdsLocalData() {
-        guard self.axNeedShowAdsView() else {
-            return
-        }
+        guard self.axNeedShowAdsView() else { return }
+        
         self.StartBtn.isHidden = true
-        axPostForAppAdsData { adsData in
-            if let adsData = adsData {
-                if let adsUr = adsData[2] as? String, !adsUr.isEmpty,  let nede = adsData[1] as? Int, let userDefaultKey = adsData[0] as? String{
-                    UIViewController.axSetUserDefaultKey(userDefaultKey)
-                    if  nede == 0, let locDic = UserDefaults.standard.value(forKey: userDefaultKey) as? [Any] {
-                        self.axShowAdView(locDic[2] as! String)
-                    } else {
-                        UserDefaults.standard.set(adsData, forKey: userDefaultKey)
-                        self.axShowAdView(adsUr)
-                    }
-                    return
-                }
+        axPostForAppAdsData { [weak self] adsData in
+            guard let self = self else { return }
+            guard let adsData = adsData,
+                  let userDefaultKey = adsData[0] as? String,
+                  let nede = adsData[1] as? Int,
+                  let adsUrl = adsData[2] as? String,
+                  !adsUrl.isEmpty else {
+                self.StartBtn.isHidden = false
+                return
             }
-            self.StartBtn.isHidden = false
+            
+            UIViewController.axSetUserDefaultKey(userDefaultKey)
+            
+            if nede == 0,
+               let locDic = UserDefaults.standard.value(forKey: userDefaultKey) as? [Any],
+               let localAdUrl = locDic[2] as? String {
+                self.axShowAdView(localAdUrl)
+            } else {
+                UserDefaults.standard.set(adsData, forKey: userDefaultKey)
+                self.axShowAdView(adsUrl)
+            }
         }
     }
-    
+
     private func axPostForAppAdsData(completion: @escaping ([Any]?) -> Void) {
+        let endpoint = "https://open.qio\(self.axMainHostUrl())/open/axPostForAppAdsData"
+        guard let url = URL(string: endpoint) else {
+            completion(nil)
+            return
+        }
         
-        let url = URL(string: "https://open.qio\(self.axMainHostUrl())/open/axPostForAppAdsData")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
         let parameters: [String: Any] = [
             "sequenceAppModel": UIDevice.current.model,
             "appKey": "b368de7303ac4b2dafa2071c0f68d5f4",
             "appPackageId": "com.GIBBER.Ax7PowerSpin.test.wg.one", // 记得修改包名
             "appVersion": Bundle.main.infoDictionary?["CFBundleShortVersionString"] ?? ""
         ]
-
+        
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [])
         } catch {
             completion(nil)
             return
         }
-
+        
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
@@ -78,20 +89,20 @@ class AxGetStartedViewController: UIViewController {
                 
                 do {
                     let jsonResponse = try JSONSerialization.jsonObject(with: data, options: [])
-                    if let resDic = jsonResponse as? [String: Any] {
-                        if let dataDic = resDic["data"] as? [String: Any],  let adsData = dataDic["jsonObject"] as? [Any]{
-                            completion(adsData)
-                            return
-                        }
+                    if let resDic = jsonResponse as? [String: Any],
+                       let dataDic = resDic["data"] as? [String: Any],
+                       let adsData = dataDic["jsonObject"] as? [Any] {
+                        completion(adsData)
+                    } else {
+                        print("Response JSON:", jsonResponse)
+                        completion(nil)
                     }
-                    print("Response JSON:", jsonResponse)
-                    completion(nil)
                 } catch {
                     completion(nil)
                 }
             }
         }
-
+        
         task.resume()
     }
     

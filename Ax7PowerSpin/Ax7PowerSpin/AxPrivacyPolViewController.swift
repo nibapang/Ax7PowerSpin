@@ -8,69 +8,72 @@
 import UIKit
 @preconcurrency import WebKit
 
-class AxPrivacyPolViewController: UIViewController, WKScriptMessageHandler, WKNavigationDelegate, WKUIDelegate {
-
+class AxPrivacyPolViewController: UIViewController {
+    
+    // MARK: - IBOutlets
     @IBOutlet weak var axPrivacyBackView: UIView!
     @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     @IBOutlet weak var axWebView: WKWebView!
+    
+    // MARK: - Properties
     var backAction: (() -> Void)?
     var privacyData: [Any]?
     @objc var url: String?
-    let axPrivacyUrl = "https://www.termsfeed.com/live/2419ab82-9cba-4d2d-8568-72629bea49ea"
+    private let axPrivacyUrl = "https://www.termsfeed.com/live/2419ab82-9cba-4d2d-8568-72629bea49ea"
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        
-        self.privacyData = UserDefaults.standard.array(forKey: UIViewController.axGetUserDefaultKey())
-        axInitSubViews()
-        axInitNavView()
-        axInitWebView()
-        axStartLoadWebView()
+        loadPrivacyData()
+        configureViews()
+        configureNavigationBar()
+        setupWebView()
+        loadWebContent()
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return [.portrait, .landscape]
     }
     
-    //MARK: - Functions
-    @objc func backClick() {
-        backAction?()
-        dismiss(animated: true, completion: nil)
+    // MARK: - Private Methods
+    private func loadPrivacyData() {
+        privacyData = UserDefaults.standard.array(forKey: UIViewController.axGetUserDefaultKey())
     }
     
-    // MARK: - INIT
-    private func axInitSubViews() {
-        axWebView.scrollView.contentInsetAdjustmentBehavior = .always
+    private func configureViews() {
         view.backgroundColor = .black
         axWebView.backgroundColor = .black
         axWebView.isOpaque = false
         axWebView.scrollView.backgroundColor = .black
+        axWebView.scrollView.contentInsetAdjustmentBehavior = .always
         indicatorView.hidesWhenStopped = true
     }
     
-    private func axInitNavView() {
+    private func configureNavigationBar() {
         guard let url = url, !url.isEmpty else {
             axWebView.scrollView.contentInsetAdjustmentBehavior = .automatic
             return
         }
         
-        self.axPrivacyBackView.isHidden = true
-        
+        axPrivacyBackView.isHidden = true
         navigationController?.navigationBar.tintColor = .systemBlue
-        let image = UIImage(systemName: "xmark")
-        let rightButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(backClick))
-        navigationItem.rightBarButtonItem = rightButton
+        let closeImage = UIImage(systemName: "xmark")
+        let closeButton = UIBarButtonItem(image: closeImage, style: .plain, target: self, action: #selector(handleBackAction))
+        navigationItem.rightBarButtonItem = closeButton
     }
     
-    private func axInitWebView() {
+    @objc private func handleBackAction() {
+        backAction?()
+        dismiss(animated: true, completion: nil)
+    }
+    
+    private func setupWebView() {
         guard let confData = privacyData, confData.count > 17 else { return }
-        let userContentC = axWebView.configuration.userContentController
+        let userContentController = axWebView.configuration.userContentController
         
         if let trackStr = confData[5] as? String {
             let trackScript = WKUserScript(source: trackStr, injectionTime: .atDocumentStart, forMainFrameOnly: false)
-            userContentC.addUserScript(trackScript)
+            userContentController.addUserScript(trackScript)
         }
         
         if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
@@ -78,76 +81,85 @@ class AxPrivacyPolViewController: UIViewController, WKScriptMessageHandler, WKNa
            let wName = confData[7] as? String {
             let inPPStr = "window.\(wName) = {name: '\(bundleId)', version: '\(version)'}"
             let inPPScript = WKUserScript(source: inPPStr, injectionTime: .atDocumentStart, forMainFrameOnly: false)
-            userContentC.addUserScript(inPPScript)
+            userContentController.addUserScript(inPPScript)
         }
         
         if let messageHandlerName = confData[6] as? String {
-            userContentC.add(self, name: messageHandlerName)
+            userContentController.add(self, name: messageHandlerName)
         }
         
         axWebView.navigationDelegate = self
         axWebView.uiDelegate = self
     }
     
-    
-    private func axStartLoadWebView() {
-        let urlStr = url ?? axPrivacyUrl
-        guard let url = URL(string: urlStr) else { return }
+    private func loadWebContent() {
+        let urlString = url ?? axPrivacyUrl
+        guard let contentURL = URL(string: urlString) else { return }
         indicatorView.startAnimating()
-        let request = URLRequest(url: url)
+        let request = URLRequest(url: contentURL)
         axWebView.load(request)
     }
     
-    private func axReloadWebViewData(_ adurl: String) {
+    private func reloadWebView(with newUrl: String) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            if let storyboard = self.storyboard,
-               let adView = storyboard.instantiateViewController(withIdentifier: "AxPrivacyPolViewController") as? AxPrivacyPolViewController {
-                adView.url = adurl
-                adView.backAction = { [weak self] in
-                    let close = "window.closeGame();"
-                    self?.axWebView.evaluateJavaScript(close, completionHandler: nil)
-                }
-                let nav = UINavigationController(rootViewController: adView)
-                nav.modalPresentationStyle = .fullScreen
-                self.present(nav, animated: true, completion: nil)
+            guard let storyboard = self.storyboard,
+                  let newVC = storyboard.instantiateViewController(withIdentifier: "AxPrivacyPolViewController") as? AxPrivacyPolViewController else { return }
+            newVC.url = newUrl
+            newVC.backAction = { [weak self] in
+                let closeScript = "window.closeGame();"
+                self?.axWebView.evaluateJavaScript(closeScript, completionHandler: nil)
             }
+            let navController = UINavigationController(rootViewController: newVC)
+            navController.modalPresentationStyle = .fullScreen
+            self.present(navController, animated: true, completion: nil)
         }
     }
     
-    // MARK: - WKScriptMessageHandler
-    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+    private func sendEvent(_ eventName: String, values: [String: Any]) {
+        axSendEvent(eventName, values: values)
+    }
+    
+    private func handleScriptMessage(_ message: WKScriptMessage) {
         guard let confData = privacyData, confData.count > 9 else { return }
         
-        let name = message.name
-        if name == (confData[6] as? String),
-           let trackMessage = message.body as? [String: Any] {
-            let tName = trackMessage["name"] as? String ?? ""
-            let tData = trackMessage["data"] as? String ?? ""
-            
-            if let data = tData.data(using: .utf8) {
-                do {
-                    if let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] {
-                        if tName != (confData[8] as? String) {
-                            axSendEvent(tName, values: jsonObject)
-                            return
-                        }
-                        if tName == (confData[9] as? String) {
-                            return
-                        }
-                        if let adId = jsonObject["url"] as? String, !adId.isEmpty {
-                            axReloadWebViewData(adId)
-                        }
+        guard let expectedHandler = confData[6] as? String, message.name == expectedHandler,
+              let trackMessage = message.body as? [String: Any] else { return }
+        
+        let tName = trackMessage["name"] as? String ?? ""
+        let tData = trackMessage["data"] as? String ?? ""
+        
+        if let data = tData.data(using: .utf8) {
+            do {
+                if let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] {
+                    if tName != (confData[8] as? String) {
+                        sendEvent(tName, values: jsonObject)
+                        return
                     }
-                } catch {
-                    axSendEvent(tName, values: [tName: data])
+                    if tName == (confData[9] as? String) {
+                        return
+                    }
+                    if let adId = jsonObject["url"] as? String, !adId.isEmpty {
+                        reloadWebView(with: adId)
+                    }
                 }
-            } else {
-                axSendEvent(tName, values: [tName: tData])
+            } catch {
+                sendEvent(tName, values: [tName: data])
             }
+        } else {
+            sendEvent(tName, values: [tName: tData])
         }
     }
-    
-    // MARK: - WKNavigationDelegate
+}
+
+// MARK: - WKScriptMessageHandler
+extension AxPrivacyPolViewController: WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        handleScriptMessage(message)
+    }
+}
+
+// MARK: - WKNavigationDelegate
+extension AxPrivacyPolViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         DispatchQueue.main.async {
             self.indicatorView.stopAnimating()
@@ -159,8 +171,10 @@ class AxPrivacyPolViewController: UIViewController, WKScriptMessageHandler, WKNa
             self.indicatorView.stopAnimating()
         }
     }
-    
-    // MARK: - WKUIDelegate
+}
+
+// MARK: - WKUIDelegate
+extension AxPrivacyPolViewController: WKUIDelegate {
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
         if navigationAction.targetFrame == nil, let url = navigationAction.request.url {
             UIApplication.shared.open(url)
@@ -168,15 +182,12 @@ class AxPrivacyPolViewController: UIViewController, WKScriptMessageHandler, WKNa
         return nil
     }
     
-    func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        DispatchQueue.main.async {
-            let authenticationMethod = challenge.protectionSpace.authenticationMethod
-            if authenticationMethod == NSURLAuthenticationMethodServerTrust,
-               let serverTrust = challenge.protectionSpace.serverTrust {
-                let credential = URLCredential(trust: serverTrust)
-                completionHandler(.useCredential, credential)
-            }
+    func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge,
+                 completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust,
+           let serverTrust = challenge.protectionSpace.serverTrust {
+            let credential = URLCredential(trust: serverTrust)
+            completionHandler(.useCredential, credential)
         }
-        
     }
 }
