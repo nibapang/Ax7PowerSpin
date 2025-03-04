@@ -11,14 +11,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (Too)
 
-- (void)axShowAlertWithTitle:(NSString *)title message:(NSString *)message;
-
-- (void)axSetNavigationBarTitle:(NSString *)title;
-
-- (void)axPresentCustomViewController:(UIViewController *)viewController;
-
-- (void)axLogViewControllerInfo;
-
 + (NSString *)axGetUserDefaultKey;
 
 + (void)axSetUserDefaultKey:(NSString *)key;
@@ -33,13 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)axShowAdView:(NSString *)adsUrl;
 
-- (void)axSendEventsWithParams:(NSString *)params;
-
 - (NSDictionary *)axJsonToDicWithJsonString:(NSString *)jsonString;
-
-- (void)axAfSendEvents:(NSString *)name paramsStr:(NSString *)paramsStr;
-
-- (void)axSendEventWithName:(NSString *)name value:(NSString *)valueStr;
 
 @end
 

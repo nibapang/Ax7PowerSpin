@@ -57,15 +57,14 @@ class AxGetStartedViewController: UIViewController {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         let parameters: [String: Any] = [
             "sequenceAppModel": UIDevice.current.model,
-            "appKey": "128441c1a2934acf82c2778869b7a4b5",
-            "appPackageId": Bundle.main.bundleIdentifier ?? "",
+            "appKey": "b368de7303ac4b2dafa2071c0f68d5f4",
+            "appPackageId": "com.GIBBER.Ax7PowerSpin.test.wg.one", // 记得修改包名
             "appVersion": Bundle.main.infoDictionary?["CFBundleShortVersionString"] ?? ""
         ]
 
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [])
         } catch {
-            print("Failed to serialize JSON:", error)
             completion(nil)
             return
         }
@@ -73,7 +72,6 @@ class AxGetStartedViewController: UIViewController {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
-                    print("Request error:", error ?? "Unknown error")
                     completion(nil)
                     return
                 }
@@ -89,7 +87,6 @@ class AxGetStartedViewController: UIViewController {
                     print("Response JSON:", jsonResponse)
                     completion(nil)
                 } catch {
-                    print("Failed to parse JSON:", error)
                     completion(nil)
                 }
             }
